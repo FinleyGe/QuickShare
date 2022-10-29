@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "golang.go",
+    "aaron-bond.better-comments",
+    "streetsidesoftware.code-spell-checker",
+    "codezombiech.gitignore",
+    "github.vscode-pull-request-github",
+    "christian-kohler.path-intellisense"
+  ]
+}

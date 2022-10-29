@@ -1,0 +1,13 @@
+dev: true
+
+database:
+  db_name: "database"
+  username: "username"
+  password: "password"
+  address: "localhost:3306"
+
+server:
+  port: "8888"
+  allow_origins:
+    - "localhost:8080"
+

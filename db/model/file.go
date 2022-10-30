@@ -6,23 +6,14 @@ import (
 	"gorm.io/gorm"
 )
 
-type FileType uint8
-
-const (
-	Image FileType = iota
-	Video
-	Audio
-	Document
-	Other
-)
-
 type File struct {
 	gorm.Model
-	Name          string
-	Path          string
-	Size          int64
-	Type          FileType
-	Hash          string
-	DownloadCount int64
-	ExpireAt      time.Time
+	Name          string    `json:"name"`
+	Path          string    `json:"path"`
+	Size          int64     `json:"size"`
+	Type          string    `json:"type"`
+	Hash          string    `json:"hash"`
+	DownloadCount int64     `json:"download_count"`
+	Temporary     bool      `json:"temporary"`
+	ExpireAt      time.Time `json:"expire_at"`
 }

@@ -2,6 +2,7 @@ package db
 
 import (
 	. "QuickShare/config"
+	"QuickShare/db/model"
 	. "QuickShare/log"
 	"fmt"
 	"log"
@@ -48,6 +49,7 @@ func init() {
 			Logger: proLog,
 		})
 	}
+	DB.AutoMigrate(&model.User{}, &model.File{})
 	if err != nil {
 		log.Panicln("Database Connection Error!", err)
 	}

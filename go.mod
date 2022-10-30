@@ -5,7 +5,9 @@ go 1.18
 require (
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.8.1
+	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/spf13/viper v1.12.0
+	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4
 	gorm.io/driver/mysql v1.3.6
 	gorm.io/gorm v1.23.10
 )
@@ -36,7 +38,6 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.3.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
-	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4 // indirect
 	golang.org/x/net v0.0.0-20220520000938-2e3eb7b945c2 // indirect
 	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 	golang.org/x/text v0.3.7 // indirect

@@ -1,0 +1,265 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> QuickShare/controller.Test (4 handlers)
+2022/10/30 00:04:53 Running Server at :8888
+2022/10/30 00:04:54 Shutdown Server ...
+2022/10/30 00:04:54 Server Exiting
+
+[GORM] 2022/10/30 00:06:32 /home/finley/project/QuickShare/db/init.go:43
+[error] failed to initialize database, got error Error 1045: Access denied for user 'username'@'localhost' (using password: YES)
+2022/10/30 00:06:32 Database Connection Error! Error 1045: Access denied for user 'username'@'localhost' (using password: YES)
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> QuickShare/controller.Test (4 handlers)
+2022/10/30 00:16:05 Running Server at :8888
+2022/10/30 00:16:06 Shutdown Server ...
+2022/10/30 00:16:06 Server Exiting
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> QuickShare/controller.Test (4 handlers)
+[GIN-debug] GET    /download/:hash           --> QuickShare/controller.Download (4 handlers)
+[GIN-debug] POST   /upload                   --> QuickShare/controller.Upload (4 handlers)
+2022/10/30 12:32:03 Running Server at :8888
+2022/10/30 12:32:32 Shutdown Server ...
+2022/10/30 12:32:32 Server Exiting
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> QuickShare/controller.Test (4 handlers)
+[GIN-debug] GET    /download/:hash           --> QuickShare/controller.Download (4 handlers)
+[GIN-debug] POST   /upload                   --> QuickShare/controller.Upload (4 handlers)
+2022/10/30 12:42:47 Running Server at :8888
+[GIN] 2022/10/30 - 12:43:55 | 404 |       1.132µs |       127.0.0.1 | POST     "/"
+2022/10/30 12:43:58 request Content-Type isn't multipart/form-data
+[GIN] 2022/10/30 - 12:43:58 | 400 |      88.081µs |       127.0.0.1 | POST     "/upload"
+2022/10/30 12:44:28 request Content-Type isn't multipart/form-data
+[GIN] 2022/10/30 - 12:44:28 | 400 |      66.813µs |       127.0.0.1 | POST     "/upload"
+2022/10/30 12:47:37 open ./upload/4534cc5b83c05acf7d4e5e86b5c6f494: no such file or directory
+[GIN] 2022/10/30 - 12:47:37 | 500 |     333.019µs |       127.0.0.1 | POST     "/upload?temporary=true"
+
+[GORM] 2022/10/30 12:47:54 /home/finley/project/QuickShare/controller/file.go:43 Error 1146: Table 'test.files' doesn't exist
+[1.898ms] [rows:0] INSERT INTO `files` (`created_at`,`updated_at`,`deleted_at`,`name`,`path`,`size`,`type`,`hash`,`download_count`,`temporary`,`expire_at`) VALUES ('2022-10-30 12:47:54.161','2022-10-30 12:47:54.204',NULL,'pic.png','./upload/9552a60722366bfe44d458d99e42a4ec',27961,'image/png','9552a60722366bfe44d458d99e42a4ec',0,true,'2022-10-31 12:47:54.203')
+2022/10/30 12:47:54 Error 1146: Table 'test.files' doesn't exist
+[GIN] 2022/10/30 - 12:47:54 | 500 |   44.843693ms |       127.0.0.1 | POST     "/upload?temporary=true"
+2022/10/30 13:19:43 Shutdown Server ...
+2022/10/30 13:19:43 Server Exiting
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> QuickShare/controller.Test (4 handlers)
+[GIN-debug] GET    /download/:hash           --> QuickShare/controller.Download (4 handlers)
+[GIN-debug] POST   /upload                   --> QuickShare/controller.Upload (4 handlers)
+2022/10/30 13:19:44 Running Server at :8888
+
+[GORM] 2022/10/30 13:19:49 /home/finley/project/QuickShare/controller/file.go:43 Error 1146: Table 'test.files' doesn't exist
+[1.277ms] [rows:0] INSERT INTO `files` (`created_at`,`updated_at`,`deleted_at`,`name`,`path`,`size`,`type`,`hash`,`download_count`,`temporary`,`expire_at`) VALUES ('2022-10-30 13:19:49.481','2022-10-30 13:19:49.483',NULL,'pic.png','./upload/a59421fd2899c9f99f521b41fea966e3',27961,'image/png','a59421fd2899c9f99f521b41fea966e3',0,true,'2022-10-31 13:19:49.481')
+2022/10/30 13:19:49 Error 1146: Table 'test.files' doesn't exist
+[GIN] 2022/10/30 - 13:19:49 | 500 |    1.874166ms |       127.0.0.1 | POST     "/upload?temporary=true"
+2022/10/30 13:20:05 Shutdown Server ...
+2022/10/30 13:20:05 Server Exiting
+
+[GORM] 2022/10/30 13:21:03 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.046ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:21:03 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.721ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:21:03 /home/finley/project/QuickShare/db/init.go:52
+[1.895ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'test' AND table_name = 'users' AND table_type = 'BASE TABLE'
+
+[GORM] 2022/10/30 13:21:03 /home/finley/project/QuickShare/db/init.go:52
+[8.920ms] [rows:0] CREATE TABLE `users` (`id` bigint unsigned AUTO_INCREMENT,`username` longtext,`password` longtext,PRIMARY KEY (`id`))
+
+[GORM] 2022/10/30 13:21:03 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.115ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:21:03 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.428ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:21:03 /home/finley/project/QuickShare/db/init.go:52
+[0.722ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'test' AND table_name = 'files' AND table_type = 'BASE TABLE'
+
+[GORM] 2022/10/30 13:21:03 /home/finley/project/QuickShare/db/init.go:52
+[8.918ms] [rows:0] CREATE TABLE `files` (`id` bigint unsigned AUTO_INCREMENT,`created_at` datetime(3) NULL,`updated_at` datetime(3) NULL,`deleted_at` datetime(3) NULL,`name` longtext,`path` longtext,`size` bigint,`type` longtext,`hash` longtext,`download_count` bigint,`temporary` boolean,`expire_at` datetime(3) NULL,PRIMARY KEY (`id`),INDEX `idx_files_deleted_at` (`deleted_at`))
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> QuickShare/controller.Test (4 handlers)
+[GIN-debug] GET    /download/:hash           --> QuickShare/controller.Download (4 handlers)
+[GIN-debug] POST   /upload                   --> QuickShare/controller.Upload (4 handlers)
+2022/10/30 13:21:03 Running Server at :8888
+
+[GORM] 2022/10/30 13:21:05 /home/finley/project/QuickShare/controller/file.go:43
+[5.784ms] [rows:1] INSERT INTO `files` (`created_at`,`updated_at`,`deleted_at`,`name`,`path`,`size`,`type`,`hash`,`download_count`,`temporary`,`expire_at`) VALUES ('2022-10-30 13:21:05.476','2022-10-30 13:21:05.477',NULL,'pic.png','./upload/b52a86444726232e83f09341fd6d26be',27961,'image/png','b52a86444726232e83f09341fd6d26be',0,true,'2022-10-31 13:21:05.476')
+[GIN] 2022/10/30 - 13:21:05 | 200 |    6.416795ms |       127.0.0.1 | POST     "/upload?temporary=true"
+2022/10/30 13:21:58 Shutdown Server ...
+2022/10/30 13:21:58 Server Exiting
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.044ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.580ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:25:27 /home/finley/project/QuickShare/db/init.go:52
+[0.756ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'test' AND table_name = 'users' AND table_type = 'BASE TABLE'
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.070ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.267ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:163
+[0.787ms] [rows:-] SELECT * FROM `users` LIMIT 1
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:181
+[0.764ms] [rows:-] SELECT column_name, column_default, is_nullable = 'YES', data_type, character_maximum_length, column_type, column_key, extra, column_comment, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'test' AND table_name = 'users' ORDER BY ORDINAL_POSITION
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.088ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.316ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:25:27 /home/finley/project/QuickShare/db/init.go:52
+[0.522ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'test' AND table_name = 'files' AND table_type = 'BASE TABLE'
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.069ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.257ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:163
+[0.137ms] [rows:-] SELECT * FROM `files` LIMIT 1
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:181
+[0.598ms] [rows:-] SELECT column_name, column_default, is_nullable = 'YES', data_type, character_maximum_length, column_type, column_key, extra, column_comment, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'test' AND table_name = 'files' ORDER BY ORDINAL_POSITION
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:47
+[4.990ms] [rows:0] ALTER TABLE `files` MODIFY COLUMN `temporary` boolean
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.087ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:25:27 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.374ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:25:27 /home/finley/project/QuickShare/db/init.go:52
+[0.807ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'test' AND table_name = 'files' AND index_name = 'idx_files_deleted_at'
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> QuickShare/controller.Test (4 handlers)
+[GIN-debug] GET    /download/:hash           --> QuickShare/controller.Download (4 handlers)
+[GIN-debug] POST   /upload                   --> QuickShare/controller.Upload (4 handlers)
+2022/10/30 13:25:27 Running Server at :8888
+
+[GORM] 2022/10/30 13:25:31 /home/finley/project/QuickShare/controller/file.go:43
+[2.022ms] [rows:1] INSERT INTO `files` (`created_at`,`updated_at`,`deleted_at`,`name`,`path`,`size`,`type`,`hash`,`download_count`,`temporary`,`expire_at`) VALUES ('2022-10-30 13:25:31.633','2022-10-30 13:25:31.634',NULL,'pic.png','./upload/3289fd0d8699ff6ef206daaa17d4a23a',27961,'image/png','3289fd0d8699ff6ef206daaa17d4a23a',0,true,'2022-10-31 13:25:31.633')
+[GIN] 2022/10/30 - 13:25:31 | 200 |    2.392074ms |       127.0.0.1 | POST     "/upload?temporary=true"
+
+[GORM] 2022/10/30 13:26:49 /home/finley/project/QuickShare/controller/file.go:56 record not found
+[0.422ms] [rows:0] SELECT * FROM `files` WHERE hash = NULL AND `files`.`deleted_at` IS NULL ORDER BY `files`.`id` LIMIT 1
+2022/10/30 13:26:49 record not found
+[GIN] 2022/10/30 - 13:26:49 | 404 |     517.397µs |       127.0.0.1 | GET      "/download/3289fd0d8699ff6ef206daaa17d4a23a"
+2022/10/30 13:28:20 Shutdown Server ...
+2022/10/30 13:28:20 Server Exiting
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.046ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.453ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:28:21 /home/finley/project/QuickShare/db/init.go:52
+[0.563ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'test' AND table_name = 'users' AND table_type = 'BASE TABLE'
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.045ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.205ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:163
+[0.096ms] [rows:-] SELECT * FROM `users` LIMIT 1
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:181
+[0.491ms] [rows:-] SELECT column_name, column_default, is_nullable = 'YES', data_type, character_maximum_length, column_type, column_key, extra, column_comment, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'test' AND table_name = 'users' ORDER BY ORDINAL_POSITION
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.045ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.204ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:28:21 /home/finley/project/QuickShare/db/init.go:52
+[0.386ms] [rows:-] SELECT count(*) FROM information_schema.tables WHERE table_schema = 'test' AND table_name = 'files' AND table_type = 'BASE TABLE'
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.094ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.266ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:163
+[0.120ms] [rows:-] SELECT * FROM `files` LIMIT 1
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:181
+[0.591ms] [rows:-] SELECT column_name, column_default, is_nullable = 'YES', data_type, character_maximum_length, column_type, column_key, extra, column_comment, numeric_precision, numeric_scale , datetime_precision FROM information_schema.columns WHERE table_schema = 'test' AND table_name = 'files' ORDER BY ORDINAL_POSITION
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:47
+[5.251ms] [rows:0] ALTER TABLE `files` MODIFY COLUMN `temporary` boolean
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:250
+[0.080ms] [rows:-] SELECT DATABASE()
+
+[GORM] 2022/10/30 13:28:21 /home/finley/go/pkg/mod/gorm.io/driver/mysql@v1.3.6/migrator.go:253
+[0.384ms] [rows:1] SELECT SCHEMA_NAME from Information_schema.SCHEMATA where SCHEMA_NAME LIKE 'test%' ORDER BY SCHEMA_NAME='test' DESC,SCHEMA_NAME limit 1
+
+[GORM] 2022/10/30 13:28:21 /home/finley/project/QuickShare/db/init.go:52
+[0.698ms] [rows:-] SELECT count(*) FROM information_schema.statistics WHERE table_schema = 'test' AND table_name = 'files' AND index_name = 'idx_files_deleted_at'
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /test                     --> QuickShare/controller.Test (4 handlers)
+[GIN-debug] GET    /download/:hash           --> QuickShare/controller.Download (4 handlers)
+[GIN-debug] POST   /upload                   --> QuickShare/controller.Upload (4 handlers)
+2022/10/30 13:28:21 Running Server at :8888
+
+[GORM] 2022/10/30 13:28:25 /home/finley/project/QuickShare/controller/file.go:56
+[0.508ms] [rows:1] SELECT * FROM `files` WHERE hash = '3289fd0d8699ff6ef206daaa17d4a23a' AND `files`.`deleted_at` IS NULL ORDER BY `files`.`id` LIMIT 1
+
+[GORM] 2022/10/30 13:28:25 /home/finley/project/QuickShare/controller/file.go:71
+[2.049ms] [rows:1] UPDATE `files` SET `created_at`='2022-10-30 13:25:31.634',`updated_at`='2022-10-30 13:28:25.474',`deleted_at`=NULL,`name`='pic.png',`path`='./upload/3289fd0d8699ff6ef206daaa17d4a23a',`size`=27961,`type`='image/png',`hash`='3289fd0d8699ff6ef206daaa17d4a23a',`download_count`=1,`temporary`=true,`expire_at`='2022-10-31 13:25:31.634' WHERE `files`.`deleted_at` IS NULL AND `id` = 2
+[GIN] 2022/10/30 - 13:28:25 | 200 |    6.165417ms |       127.0.0.1 | GET      "/download/3289fd0d8699ff6ef206daaa17d4a23a"
+2022/10/30 13:28:33 Shutdown Server ...
+2022/10/30 13:28:33 Server Exiting

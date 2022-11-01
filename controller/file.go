@@ -1,9 +1,8 @@
 package controller
 
 import (
-	. "QuickShare/db"
+	"QuickShare/db/model"
 	. "QuickShare/db/model"
-	"QuickShare/utility"
 	. "QuickShare/utility"
 	"log"
 	"net/http"
@@ -40,7 +39,7 @@ func Upload(c *gin.Context) {
 		Response(c, http.StatusInternalServerError, "Internal Server Error", nil)
 		return
 	}
-	if err := DB.Create(&data).Error; err != nil {
+	if err := model.CreateFile(&data); err != nil {
 		log.Println(err)
 		Response(c, http.StatusInternalServerError, "Internal Server Error", nil)
 		return
@@ -52,21 +51,14 @@ func Upload(c *gin.Context) {
 
 func Download(c *gin.Context) {
 	hash := c.Param("hash")
-	data := File{}
-	if err := DB.Where("hash = ?", hash).First(&data).Error; err != nil {
-		log.Println(err)
+	data, err := model.GetFileByHash(hash)
+
+	if (err != nil || data == File{}) {
 		Response(c, http.StatusNotFound, "Not Found", nil)
 		return
 	}
-	if data.Temporary {
-		if data.ExpireAt.Before(time.Now()) {
-			Response(c, http.StatusNotFound, "Not Found", nil)
-			utility.DeleteFile(data.Path)
-			DB.Delete(&data)
-			return
-		}
-	}
 	c.FileAttachment(data.Path, data.Name)
-	data.DownloadCount++
-	DB.Save(&data)
+	if err := model.FileDownloadCountIncrement(hash); err != nil {
+		log.Println(err)
+	}
 }

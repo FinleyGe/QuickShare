@@ -6,6 +6,6 @@ import (
 
 func init() {
 	Router.GET("/test", Test)
-	Router.GET("/download/:hash", Download)
+	Router.GET("/get/:hash", Download)
 	Router.POST("/upload", Upload)
 }

@@ -1,6 +1,8 @@
 package utility
 
 import (
+	. "QuickShare/config"
+	"QuickShare/db/model"
 	"crypto/md5"
 	"fmt"
 	"os"
@@ -18,4 +20,17 @@ func GenerateFilePath(fileName string, updateTime time.Time) string {
 
 func DeleteFile(path string) error {
 	return os.Remove(path)
+}
+
+func cleanTheFiles() {
+	files := model.GetExpiredFiles()
+	for _, file := range files {
+		DeleteFile(file.Path)
+	}
+}
+
+func CleanTheFiles() {
+	if Config.Dev {
+		go cleanTheFiles()
+	}
 }

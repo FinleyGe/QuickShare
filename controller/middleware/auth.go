@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"QuickShare/db/model"
 	"QuickShare/utility"
 	"strconv"
 
@@ -16,6 +17,13 @@ func Auth(c *gin.Context) {
 	}
 	t, err := utility.ParseToken(token)
 	id, _ := strconv.Atoi(t)
-	c.Set("id", id)
+	user := model.User{}
+	err = user.GetByID(uint(id))
+	if (err != nil || user == model.User{}) {
+		c.AbortWithStatusJSON(401, gin.H{"message": "Unauthorized"})
+		c.Abort()
+		return
+	}
+
 	c.Next()
 }

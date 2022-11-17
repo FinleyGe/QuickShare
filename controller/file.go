@@ -62,3 +62,26 @@ func Download(c *gin.Context) {
 		log.Println(err)
 	}
 }
+
+func GetFileInfo(c *gin.Context) {
+	hash := c.Param("hash")
+	data, err := model.GetFileByHash(hash)
+	if (err != nil || data == File{}) {
+		Response(c, http.StatusNotFound, "Not Found", nil)
+		return
+	}
+	Response(c, http.StatusOK, "OK", gin.H{
+		"data": data,
+	})
+}
+
+func GetAllInfo(c *gin.Context) {
+	files, err := model.GetAllFiles()
+	if err != nil {
+		Response(c, http.StatusInternalServerError, "Internal Server Error", nil)
+		return
+	}
+	Response(c, http.StatusOK, "OK", gin.H{
+		"data": files,
+	})
+}

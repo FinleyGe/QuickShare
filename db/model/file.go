@@ -33,10 +33,17 @@ func GetFileByHash(hash string) (File, error) {
 func FileDownloadCountIncrement(hash string) error {
 	return DB.Model(&File{}).Where("hash = ?", hash).Update("download_count", gorm.Expr("download_count + ?", 1)).Error
 }
+
 func GetExpiredFiles() []File {
 	var files []File
 	DB.Where("temporary = ? AND expire_at < ?", true, time.Now()).Find(&files)
 	fmt.Println(files)
 	DB.Delete(&files)
 	return files
+}
+
+func GetAllFiles() ([]File, error) {
+	var files []File
+	err := DB.Find(&files).Error
+	return files, err
 }

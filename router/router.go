@@ -8,6 +8,10 @@ import (
 func init() {
 	Router.GET("/info/:hash", GetFileInfo)
 	Router.GET("/get/:hash", Download)
-	Router.POST("/upload", Auth, Upload)
-	Router.GET("/all_info", Auth, GetAllInfo)
+
+	Router.POST("/upload", Admin, Upload)
+	Router.GET("/all_info", Admin, GetAllInfo)
+
+	Router.POST("/login", Login)
+	Router.POST("/register", Register)
 }

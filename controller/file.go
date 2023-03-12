@@ -34,6 +34,7 @@ func Upload(c *gin.Context) {
 	data.Type = file.Header.Get("Content-Type")
 	data.Temporary = temporary
 	data.ExpireAt = time.Now().AddDate(0, 0, 1)
+
 	if err := c.SaveUploadedFile(file, data.Path); err != nil {
 		log.Println(err)
 		Response(c, http.StatusInternalServerError, "Internal Server Error", nil)

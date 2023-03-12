@@ -14,4 +14,3 @@ you can use it to deploy your own image hosting service.
 
 # Working On
 
-- [ ] basically building

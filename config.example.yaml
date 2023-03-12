@@ -11,3 +11,12 @@ server:
   allow_origins:
     - "localhost:8080"
 
+file:
+  auto_path: "./upload"
+  manual_path: "./file"
+  
+jwt:
+  secret: "secret"
+  issuser: "someone"
+  expires: 48 # hours
+

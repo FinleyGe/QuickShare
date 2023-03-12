@@ -14,8 +14,9 @@ func GenerateFileHash(fileName string, updateTime time.Time) string {
 	return fmt.Sprintf("%x", md5.Sum(data))
 }
 
+// ! Bug: File Name maybe the same
 func GenerateFilePath(fileName string, updateTime time.Time) string {
-	return "./upload/" + GenerateFileHash(fileName, updateTime)
+	return Config.File.AutoPath + GenerateFileHash(fileName, updateTime)
 }
 
 func DeleteFile(path string) error {

@@ -1,43 +1,46 @@
 package utility
 
 import (
-	"QuickShare/config"
-	"log"
+	. "QuickShare/config"
 	"time"
 
-	"github.com/golang-jwt/jwt"
+	"github.com/golang-jwt/jwt/v5"
 )
 
-type JwtData struct {
+type Data struct {
 	ID string `json:"id"`
-	jwt.StandardClaims
+}
+type JwtData struct {
+	Data Data
+	jwt.RegisteredClaims
 }
 
-func GenerateStandardJwt(jwtData *JwtData) string {
-	claims := jwtData
-	claims.StandardClaims = jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(time.Duration(time.Duration(config.Config.Jwt.Expires) * time.Hour)).Unix(),
-		Issuer:    config.Config.Jwt.Issuer,
+func GenerateToken(id string) (string, error) {
+	claims := JwtData{
+		Data{
+			ID: id,
+		},
+		jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * time.Duration(Config.Jwt.Expires))),
+			Issuer:    Config.Jwt.Issuer,
+		},
 	}
-	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	token, err := tokenClaims.SignedString([]byte(config.Config.Jwt.Secret))
-	if err != nil {
-		log.Fatalln("Jwt Error", err)
-		panic(err)
-	}
-	return token
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString([]byte(Config.Jwt.Secret))
 }
 
-func ParseToken(token string) (string, error) {
-	jwtSecret := []byte(config.Config.Jwt.Secret)
-	tokenClaims, err := jwt.ParseWithClaims(token, &JwtData{}, func(token *jwt.Token) (interface{}, error) {
-		return jwtSecret, nil
+func ParseToken(tokenString string) (*Data, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &JwtData{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(Config.Jwt.Secret), nil
 	})
 
-	if tokenClaims != nil {
-		if claims, ok := tokenClaims.Claims.(*JwtData); ok && tokenClaims.Valid {
-			return claims.ID, err
-		}
+	if err != nil {
+		return nil, err
 	}
-	return "", err
+
+	if claims, ok := token.Claims.(*JwtData); ok && token.Valid {
+		return &claims.Data, nil
+	}
+	return nil, nil
 }

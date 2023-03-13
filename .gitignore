@@ -1,3 +1,8 @@
+# Logfile
 *.log
+# config file
 config.yaml
+# Database
 upload/*
+# Binary file
+QuickShare

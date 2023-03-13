@@ -2,7 +2,6 @@ package controller
 
 import (
 	"QuickShare/db/model"
-	. "QuickShare/db/model"
 	. "QuickShare/utility"
 	"log"
 	"net/http"
@@ -19,7 +18,7 @@ func Upload(c *gin.Context) {
 	} else {
 		temporary = false
 	}
-	data := File{}
+	data := model.File{}
 	data.CreatedAt = time.Now()
 	file, err := c.FormFile("file")
 	if err != nil {
@@ -54,7 +53,7 @@ func Download(c *gin.Context) {
 	hash := c.Param("hash")
 	data, err := model.GetFileByHash(hash)
 
-	if (err != nil || data == File{}) {
+	if (err != nil || data == model.File{}) {
 		Response(c, http.StatusNotFound, "Not Found", nil)
 		return
 	}
@@ -67,7 +66,7 @@ func Download(c *gin.Context) {
 func GetFileInfo(c *gin.Context) {
 	hash := c.Param("hash")
 	data, err := model.GetFileByHash(hash)
-	if (err != nil || data == File{}) {
+	if (err != nil || data == model.File{}) {
 		Response(c, http.StatusNotFound, "Not Found", nil)
 		return
 	}
@@ -85,4 +84,23 @@ func GetAllInfo(c *gin.Context) {
 	Response(c, http.StatusOK, "OK", gin.H{
 		"data": files,
 	})
+}
+
+func DeleteFile(c *gin.Context) {
+	hash := c.Param("hash")
+	data, err := model.GetFileByHash(hash)
+	if (err != nil || data == model.File{}) {
+		Response(c, http.StatusNotFound, "Not Found", nil)
+		return
+	}
+	if err := model.DeleteFileByHash(hash); err != nil {
+		Response(c, http.StatusInternalServerError, "Internal Server Error", nil)
+		return
+	}
+	err = RemoveFile(data.Path)
+	if err != nil {
+		log.Panicln(err)
+	}
+
+	Response(c, http.StatusOK, "OK", nil)
 }

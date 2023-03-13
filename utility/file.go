@@ -19,14 +19,14 @@ func GenerateFilePath(fileName string, updateTime time.Time) string {
 	return Config.File.AutoPath + GenerateFileHash(fileName, updateTime)
 }
 
-func DeleteFile(path string) error {
+func RemoveFile(path string) error {
 	return os.Remove(path)
 }
 
 func cleanTheFiles() {
 	files := model.GetExpiredFiles()
 	for _, file := range files {
-		DeleteFile(file.Path)
+		RemoveFile(file.Path)
 	}
 }
 

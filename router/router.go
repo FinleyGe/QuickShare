@@ -8,7 +8,7 @@ import (
 func init() {
 	Router.GET("/info/:hash", GetFileInfo)
 	Router.GET("/get/:hash", Download)
-
+	Router.GET("/delete/:hash", Admin, DeleteFile)
 	Router.POST("/upload", Admin, Upload)
 	Router.GET("/all_info", Admin, GetAllInfo)
 

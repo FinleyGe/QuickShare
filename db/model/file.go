@@ -47,3 +47,7 @@ func GetAllFiles() ([]File, error) {
 	err := DB.Find(&files).Error
 	return files, err
 }
+
+func DeleteFileByHash(hash string) error {
+	return DB.Where("hash = ?", hash).Delete(&File{}).Error
+}

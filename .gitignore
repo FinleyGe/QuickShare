@@ -6,3 +6,5 @@ config.yaml
 upload/*
 # Binary file
 QuickShare
+# scripts
+deploy

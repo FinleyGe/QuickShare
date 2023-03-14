@@ -39,11 +39,11 @@ func init() {
 	dsn := fmt.Sprintf("%v:%v@tcp(%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", username, password, address, dbName)
 	var err error
 
-	if Config.Dev {
+	if Config.Env == "dev" || Config.Env == "test" {
 		DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
 			Logger: devLog,
 		})
-	} else {
+	} else if Config.Env == "prod" {
 		DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
 			Logger: proLog,
 		})

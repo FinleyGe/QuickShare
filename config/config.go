@@ -1,7 +1,7 @@
 package config
 
 type ConfigStruct struct {
-	Dev      bool     `mapstructure:"dev"`
+	Env      string   `mapstructure:"env"`
 	Server   server   `mapstructure:"server"`
 	Database database `mapstructure:"database"`
 	Jwt      jwt      `mapstructure:"jwt"`

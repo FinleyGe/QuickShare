@@ -1,4 +1,4 @@
-dev: true
+env: "dev" # dev/pro/test
 
 database:
   db_name: "database"

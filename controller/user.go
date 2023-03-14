@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"QuickShare/config"
 	. "QuickShare/db"
 	"QuickShare/db/model"
 	"QuickShare/utility"
@@ -31,7 +32,14 @@ func Login(c *gin.Context) {
 			utility.Response(c, 500, "Token generate error", nil)
 			return
 		}
-		c.SetCookie("token", token, 3600, "/", "localhost", false, true)
+
+		// bug: should be different in dev and prod
+		if config.Config.Env == "dev" {
+			c.SetCookie("token", token, 3600, "/", "localhost", false, true)
+		} else if config.Config.Env == "prod" || config.Config.Env == "test" {
+			c.SetCookie("token", token, 3600, "/api", "qs.f1nley.xyz", false, true)
+		}
+
 		utility.ResponseOK(c, "OK", nil)
 		return
 	}

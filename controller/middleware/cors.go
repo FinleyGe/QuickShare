@@ -8,13 +8,14 @@ import (
 
 func Cors() gin.HandlerFunc {
 	corsConfig := cors.DefaultConfig()
-	if Config.Dev {
+	if Config.Env == "dev" || Config.Env == "test" {
 		corsConfig.AllowAllOrigins = true
-	} else {
-
+	} else if Config.Env == "prod" {
 		// TODO: add AllowHeaders
 		/* cors.AllowHeaders = append(corsConfig.AllowHeaders, "Authorization") */
 		corsConfig.AllowOrigins = Config.Server.AllowOrigins
+	} else {
+		panic("Invalid Env")
 	}
 	return cors.New(corsConfig)
 }

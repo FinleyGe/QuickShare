@@ -3,7 +3,6 @@ import { message } from "ant-design-vue";
 import { ref } from "vue";
 import { UploadFile } from "../api";
 import { BaseUrl } from "../const";
-import QRCode from 'qrcode-vue3'
 const file = ref<File>();
 
 const filePath = ref<string>("");
@@ -23,9 +22,9 @@ function handleFileChange(e: Event) {
 </script>
 
 <template>
-  {{ filePath }}
-  <QRCode :value="filePath" />
-  <input type="file" v-on:change="handleFileChange" />
+  <div class="upload">
+    <input type="file" v-on:change="handleFileChange" />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

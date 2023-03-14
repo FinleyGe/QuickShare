@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { GetFile } from '../api';
 import { IFileInfo } from '../api/type';
+import { BaseUrl } from '../const';
 const props = defineProps<{
   fileInfo: IFileInfo
-}>()
+}>();
+
 const emits = defineEmits(["showQRCode"]);
 function download() {
   GetFile(props.fileInfo.hash);
@@ -19,6 +21,7 @@ function qrcode() {
     <lable class="name">{{ props.fileInfo.name }}</lable>
     <label class="size"> {{ props.fileInfo.size }}</label>
     <label class="count"> {{ props.fileInfo.download_count }}</label>
+    <label class="path"> {{ BaseUrl + 'get/' + props.fileInfo.hash }}</label>
     <button class="download" @click="download"> Download </button>
     <button class="showQR" @click="qrcode"> QR-Code </button>
   </div>

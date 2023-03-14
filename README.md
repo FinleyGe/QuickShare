@@ -11,6 +11,3 @@ that any one could download the file from it.
 You can deploy it on your own server.
 As it has a [RESTful API](./doc/api.md),
 you can use it to deploy your own image hosting service.
-
-# Working On
-

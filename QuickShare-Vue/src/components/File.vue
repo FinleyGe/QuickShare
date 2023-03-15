@@ -19,7 +19,7 @@ function qrcode() {
 <template>
   <div class="file-item">
     <lable class="name">{{ props.fileInfo.name }}</lable>
-    <label class="size"> {{ props.fileInfo.size }}</label>
+    <label class="size"> {{ props.fileInfo.size }} B</label>
     <label class="count"> {{ props.fileInfo.download_count }}</label>
     <label class="path"> {{ BaseUrl + 'get/' + props.fileInfo.hash }}</label>
     <button class="download" @click="download"> Download </button>

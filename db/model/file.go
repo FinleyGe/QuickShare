@@ -58,3 +58,9 @@ func GetAllFiles() ([]APIFile, error) {
 func DeleteFileByHash(hash string) error {
 	return DB.Where("hash = ?", hash).Delete(&File{}).Error
 }
+
+func GetAllInfoByType(fileType string) ([]APIFile, error) {
+	var files []APIFile
+	err := DB.Model(&File{}).Select("name, hash, type").Where("type = ?", fileType).Find(&files).Error
+	return files, err
+}

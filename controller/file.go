@@ -104,3 +104,15 @@ func DeleteFile(c *gin.Context) {
 
 	Response(c, http.StatusOK, "OK", nil)
 }
+
+func GetAllInfoByType(c *gin.Context) {
+	fileType := c.Query("type")
+	files, err := model.GetAllInfoByType(fileType)
+	if err != nil {
+		Response(c, http.StatusInternalServerError, "Internal Server Error", nil)
+		return
+	}
+	Response(c, http.StatusOK, "OK", gin.H{
+		"data": files,
+	})
+}

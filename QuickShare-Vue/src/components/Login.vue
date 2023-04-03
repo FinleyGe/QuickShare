@@ -29,7 +29,7 @@ async function handleLogin() {
     <button @click="handleLogin">登陆</button>
   </div>
 </template>
-<style lang="scss">
+<style scoped lang="scss">
 .login {
   width: fit-content;
   display: grid;

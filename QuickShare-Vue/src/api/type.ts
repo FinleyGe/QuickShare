@@ -10,4 +10,5 @@ export interface IFileInfo {
   size: number;
   download_count: number;
   created_at: string;
+  type: string;
 }

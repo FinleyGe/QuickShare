@@ -5,7 +5,7 @@ import type { DeviceSize } from '../store/init'
 import { ref } from 'vue';
 import Login from '../components/Login.vue'
 import { GetFileList } from '../api/index'
-import File from '../components/File.vue'
+import FileItem from '../components/FileItem.vue'
 import { IFileInfo } from '../api/type';
 import QRCode from '../components/QRCode.vue'
 
@@ -52,7 +52,7 @@ function showQRCode(path: string) {
       <Login v-show="showLogin" @logined="Logined" />
       <QRCode @close="isShowQRCode = false" :path="QRCodePath" v-show="isShowQRCode" />
       <div class="files">
-        <File :fileInfo="file" v-for="file in fileList" @showQRCode="showQRCode" />
+        <FileItem :fileInfo="file" v-for="file in fileList" @showQRCode="showQRCode" />
       </div>
     </main>
     <footer>

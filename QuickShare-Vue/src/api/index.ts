@@ -28,3 +28,7 @@ export async function LoginAPI(username: string, password: string): Promise<Bool
   return response.data.message === "OK";
 }
 
+export async function DeleteFile(hash: string): Promise<Boolean> {
+  const response = await api.delete(`/delete/${hash}`);
+  return response.data.message === "OK";
+}

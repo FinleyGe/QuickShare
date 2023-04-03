@@ -15,6 +15,7 @@ function handleWindowsResize() {
   }
 }
 
+
 onMounted(() => {
   handleWindowsResize();
   window.onresize = handleWindowsResize;

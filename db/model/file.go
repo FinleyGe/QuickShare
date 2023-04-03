@@ -20,6 +20,12 @@ type File struct {
 	ExpireAt      time.Time `json:"expire_at"`
 }
 
+type APIFile struct {
+	Name string `json:"name"`
+	Hash string `json:"hash"`
+	Type string `json:"type"`
+}
+
 func CreateFile(file *File) error {
 	return DB.Create(file).Error
 }
@@ -42,9 +48,10 @@ func GetExpiredFiles() []File {
 	return files
 }
 
-func GetAllFiles() ([]File, error) {
-	var files []File
-	err := DB.Find(&files).Error
+func GetAllFiles() ([]APIFile, error) {
+	// var files []File
+	var files []APIFile
+	err := DB.Model(&File{}).Select("name, hash, type").Find(&files).Error
 	return files, err
 }
 

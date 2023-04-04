@@ -25,8 +25,7 @@ async function handleDelete() {
 }
 async function getDetail() {
   var res = await GetFileDetail(props.fileInfo.hash);
-  console.log(res.data)
-  emits("showDetail", res.data)
+  emits("showDetail", res)
 }
 
 </script>

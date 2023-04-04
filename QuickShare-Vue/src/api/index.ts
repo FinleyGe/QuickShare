@@ -37,5 +37,5 @@ export async function DeleteFile(hash: string): Promise<Boolean> {
 
 export async function GetFileDetail(hash: string): Promise<IFileInfoDetail> {
   const response = await api.get(`/info/${hash}`);
-  return response.data.data as IFileInfoDetail;
+  return response.data.data.data as IFileInfoDetail;
 }

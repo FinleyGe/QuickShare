@@ -2,7 +2,7 @@
 import { IFileInfoDetail } from '../api/type';
 import { BaseUrl } from '../const'
 const props = defineProps<{
-  fileInfo: IFileInfoDetail,
+  fileInfo: IFileInfoDetail | undefined,
 }>();
 
 const emits = defineEmits(["close"]);
@@ -17,10 +17,10 @@ function close(this: any) {
 <template>
   <div class="popup">
     <div class="info">
-      <div class="name">文件名： {{ props.fileInfo.name }}</div>
-      <div class="type">类型：{{ props.fileInfo.type }}</div>
-      <div classs="size">大小: {{ props.fileInfo.size }} B</div>
-      <img :src="BaseUrl + 'get/' + props.fileInfo.hash" v-if="props.fileInfo.type == 'image/png'">
+      <div class="name">文件名： {{ props.fileInfo?.name }}</div>
+      <div class="type">类型：{{ props.fileInfo?.type }}</div>
+      <div classs="size">大小: {{ props.fileInfo?.size }} B</div>
+      <img :src="BaseUrl + 'get/' + props.fileInfo?.hash" v-if="props.fileInfo?.type == 'image/png'">
     </div>
     <button class="btn-close" @click="close">Close</button>
   </div>

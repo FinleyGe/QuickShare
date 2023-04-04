@@ -18,5 +18,6 @@ func GenerateFilePath(fileName string, updateTime time.Time) string {
 }
 
 func RemoveFile(path string) error {
+	fmt.Println("Remove file", path)
 	return os.Remove(path)
 }

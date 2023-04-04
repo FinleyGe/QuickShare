@@ -116,3 +116,15 @@ func GetAllInfoByType(c *gin.Context) {
 		"data": files,
 	})
 }
+
+func SearchFile(c *gin.Context) {
+	data := c.Query("data")
+	files, err := model.SearchFile(data)
+	if err != nil {
+		Response(c, http.StatusInternalServerError, "Internal Server Error", nil)
+		return
+	}
+	Response(c, http.StatusOK, "OK", gin.H{
+		"data": files,
+	})
+}

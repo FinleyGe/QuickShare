@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { GetFile, DeleteFile } from '../api';
+import { GetFile, DeleteFile, GetFileDetail } from '../api';
 import { IFileInfo } from '../api/type';
 import { BaseUrl } from '../const';
 const props = defineProps<{
   fileInfo: IFileInfo
 }>();
 
-const emits = defineEmits(["showQRCode"]);
+const emits = defineEmits(["showQRCode", "showDetail"]);
 function download() {
   GetFile(props.fileInfo.hash);
 }
@@ -23,11 +23,18 @@ async function handleDelete() {
     alert("删除失败");
   }
 }
+async function getDetail() {
+  var res = await GetFileDetail(props.fileInfo.hash);
+  console.log(res.data)
+  emits("showDetail", res.data)
+}
+
 </script>
 
 <template>
   <div class="file-item">
-    <lable class="name">{{ props.fileInfo.name }}</lable>
+    <lable class="name" @click="getDetail">{{ props.fileInfo.name }}</lable>
+    <lable class="type">{{ props.fileInfo.type }}</lable>
     <button class="download" @click="download"> Download </button>
     <button class="showQR" @click="qrcode"> Share </button>
     <button class="delete" @click="handleDelete"> Delete </button>

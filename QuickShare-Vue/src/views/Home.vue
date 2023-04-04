@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import Upload from '../components/Upload.vue'
+import FileItemDetail from '../components/FileItemDetail.vue'
 import { useStore } from '../store/init'
 import type { DeviceSize } from '../store/init'
 import { ref } from 'vue';
 import Login from '../components/Login.vue'
 import { GetFileList } from '../api/index'
 import FileItem from '../components/FileItem.vue'
-import { IFileInfo } from '../api/type';
+import { IFileInfo, IFileInfoDetail } from '../api/type';
 import QRCode from '../components/QRCode.vue'
 
 const store = useStore()
@@ -15,7 +16,8 @@ const showLogin = ref<boolean>(false);
 const fileList = ref<IFileInfo[]>([]);
 const QRCodePath = ref<string>("");
 const isShowQRCode = ref<boolean>(false);
-
+const isShowDetail = ref<boolean>(false);
+const fileDetail = ref<IFileInfoDetail | undefined>();
 function handleLogin() {
   if (!store.isLogin) {
     showLogin.value = !showLogin.value;
@@ -34,6 +36,10 @@ function showQRCode(path: string) {
   isShowQRCode.value = true;
 }
 
+function showDetail(detail: IFileInfoDetail) {
+  fileDetail.value = detail
+  isShowDetail.value = true;
+}
 </script>
 
 <template>
@@ -51,8 +57,9 @@ function showQRCode(path: string) {
       <Upload v-show="!showLogin" />
       <Login v-show="showLogin" @logined="Logined" />
       <QRCode @close="isShowQRCode = false" :path="QRCodePath" v-show="isShowQRCode" />
+      <FileItemDetail @close="isShowDetail = false" :file-info="fileDetail" v-show="isShowDetail" />
       <div class="files">
-        <FileItem :fileInfo="file" v-for="file in fileList" @showQRCode="showQRCode" />
+        <FileItem :fileInfo="file" v-for="file in fileList" @showQRCode="showQRCode" @showDetail="showDetail" />
       </div>
     </main>
     <footer>

@@ -20,6 +20,7 @@ onMounted(() => {
   handleWindowsResize();
   window.onresize = handleWindowsResize;
 });
+
 </script>
 
 <template>

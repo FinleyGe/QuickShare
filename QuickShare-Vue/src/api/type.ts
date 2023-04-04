@@ -7,8 +7,14 @@ export interface ILoginResponseData {
 export interface IFileInfo {
   name: string;
   hash: string;
-  size: number;
-  download_count: number;
-  created_at: string;
   type: string;
+}
+
+export interface IFileInfoDetail {
+  name: string;
+  hash: string;
+  type: string;
+  size: number;
+  create_time: string;
+  download_count: number;
 }

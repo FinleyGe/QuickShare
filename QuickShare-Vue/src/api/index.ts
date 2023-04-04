@@ -1,16 +1,18 @@
-import axios from "axios";
+import axios, { AxiosProgressEvent } from "axios";
 import { BaseUrl } from "../const";
-import { IResponse, ILoginResponseData, IFileInfo } from "./type";
+import { IResponse, ILoginResponseData, IFileInfo, IFileInfoDetail } from "./type";
 
 export const api = axios.create({
   baseURL: BaseUrl,
   withCredentials: true,
 });
 
-export function UploadFile(file: File) {
+export function UploadFile(file: File, onUploadProgress: (e: AxiosProgressEvent) => void) {
   const formData = new FormData();
   formData.append("file", file);
-  return api.post("/upload?temporary=true", formData);
+  return api.post("/upload", formData, {
+    onUploadProgress: onUploadProgress,
+  });
 }
 
 export function GetFile(hash: string) {
@@ -31,4 +33,9 @@ export async function LoginAPI(username: string, password: string): Promise<Bool
 export async function DeleteFile(hash: string): Promise<Boolean> {
   const response = await api.delete(`/delete/${hash}`);
   return response.data.message === "OK";
+}
+
+export async function GetFileDetail(hash: string): Promise<IFileInfoDetail> {
+  const response = await api.get(`/info/${hash}`);
+  return response.data.data as IFileInfoDetail;
 }

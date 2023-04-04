@@ -64,3 +64,9 @@ func GetAllInfoByType(fileType string) ([]APIFile, error) {
 	err := DB.Model(&File{}).Select("name, hash, type").Where("type = ?", fileType).Find(&files).Error
 	return files, err
 }
+
+func SearchFile(data string) ([]APIFile, error) {
+	var files []APIFile
+	err := DB.Model(&File{}).Select("name, hash, type").Where("name LIKE ?", "%"+data+"%").Find(&files).Error
+	return files, err
+}

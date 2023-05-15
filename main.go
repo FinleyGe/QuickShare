@@ -2,6 +2,7 @@ package main
 
 import (
 	. "QuickShare/config"
+	_ "QuickShare/db/redis"
 	_ "QuickShare/log"
 	. "QuickShare/router"
 	"context"

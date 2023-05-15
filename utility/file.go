@@ -21,3 +21,13 @@ func RemoveFile(path string) error {
 	fmt.Println("Remove file", path)
 	return os.Remove(path)
 }
+
+func GenerateShareCode(hash string) string {
+	// 6 digits random number
+	n := 0
+	for i := 0; i < len(hash); i++ {
+		n += int(hash[i])
+	}
+	n = n % 1000000
+	return fmt.Sprintf("%06d", n)
+}

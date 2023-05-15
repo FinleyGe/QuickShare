@@ -2,12 +2,12 @@ package controller
 
 import (
 	"QuickShare/db/model"
+	"QuickShare/db/redis"
 	. "QuickShare/utility"
+	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"time"
-
-	"github.com/gin-gonic/gin"
 )
 
 func Upload(c *gin.Context) {
@@ -126,5 +126,37 @@ func SearchFile(c *gin.Context) {
 	}
 	Response(c, http.StatusOK, "OK", gin.H{
 		"data": files,
+	})
+}
+
+func GetShareCode(c *gin.Context) {
+	hash := c.Param("hash")
+	data, err := model.GetFileByHash(hash)
+	if (err != nil || data == model.File{}) {
+		Response(c, http.StatusNotFound, "Not Found", nil)
+		return
+	}
+	shareCode := GenerateShareCode(hash)
+	if err := redis.SetHash(shareCode, hash); err != nil {
+		log.Println(err)
+		Response(c, http.StatusInternalServerError, "Internal Server Error", nil)
+		return
+	}
+	Response(c, http.StatusOK, "OK", gin.H{
+		"shareCode": shareCode,
+	})
+	return
+}
+
+func GetHashByShareCode(c *gin.Context) {
+	shareCode := c.Param("sharecode")
+	hash, err := redis.GetHash(shareCode)
+	if err != nil {
+		log.Println(err)
+		Response(c, http.StatusNotFound, "Not Found", nil)
+		return
+	}
+	Response(c, http.StatusOK, "OK", gin.H{
+		"hash": hash,
 	})
 }

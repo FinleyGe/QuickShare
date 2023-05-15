@@ -3,6 +3,7 @@ import { AxiosProgressEvent } from "axios";
 import { ref } from "vue";
 import { UploadFile } from "../api";
 import FileInfo from "./FileInfo.vue";
+import ProcessBar from "./ProcessBar.vue";
 const file = ref<File | undefined>();
 const progress = ref<number>(0);
 
@@ -50,12 +51,12 @@ function cancel() {
     <div class="drag" @click="handleClickUpload" @drop="handleDrop" @dragover="(e: DragEvent) => { e.preventDefault() }">
       点击或拖放文件到此处
     </div>
-    {{ progress }}
     <FileInfo :file="file" />
     <div class="button-set">
       <button :disabled="file == undefined" @click="upload">上传</button>
       <button @click="cancel">取消</button>
     </div>
+    <ProcessBar :percent="progress" v-show="file != undefined" />
   </div>
 </template>
 

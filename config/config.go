@@ -4,6 +4,7 @@ type ConfigStruct struct {
 	Env      string   `mapstructure:"env"`
 	Server   server   `mapstructure:"server"`
 	Database database `mapstructure:"database"`
+	Redis    redis    `mapstructure:"redis"`
 	Jwt      jwt      `mapstructure:"jwt"`
 	File     file     `mapstructure:"file"`
 }
@@ -29,4 +30,10 @@ type jwt struct {
 type file struct {
 	AutoPath   string `mapstructure:"auto_path"`
 	ManualPath string `mapstructure:"manual_path"`
+}
+
+type redis struct {
+	Address  string `mapstructure:"address"`
+	Password string `mapstructure:"password"`
+	DB       int    `mapstructure:"db"`
 }

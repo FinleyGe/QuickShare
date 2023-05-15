@@ -18,6 +18,8 @@ func init() {
 	Router.GET("/all_info_type", Admin, GetAllInfoByType)
 	Router.GET("/search", Admin, SearchFile)
 
+	Router.GET("/share/:hash", GetShareCode)
+	Router.GET("/getshare/:sharecode", GetHashByShareCode)
 	//! will be removed in the future
 	// Router.GET("/all_info", Admin, GetAllInfo)
 }

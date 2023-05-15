@@ -20,3 +20,7 @@ jwt:
   issuser: "someone"
   expires: 48 # hours
 
+redis:
+  address: "localhost: 6379"
+  password: "password"
+  db: 0

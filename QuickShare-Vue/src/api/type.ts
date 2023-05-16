@@ -1,9 +1,16 @@
 export interface IResponse<T> {
   data: T;
+  message: string;
 }
+
 export interface ILoginResponseData {
   message: string;
 }
+
+export interface IUploadResponseData {
+  hash: string;
+}
+
 export interface IFileInfo {
   name: string;
   hash: string;

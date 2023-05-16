@@ -7,6 +7,8 @@ import ProcessBar from "./ProcessBar.vue";
 const file = ref<File | undefined>();
 const progress = ref<number>(0);
 
+const hash = ref<string>("");
+
 function handleFileChange(e: Event) {
   file.value = (e.target as HTMLInputElement)?.files?.[0];
 }
@@ -32,7 +34,8 @@ async function upload() {
       progress.value = e.progress == undefined ? 0 : e!.progress * 100;
       console.log(e);
     });
-  if (res) {
+  if (res.data.message == "OK") {
+    hash.value = res.data.data.hash;
     alert("上传成功");
   } else {
     alert("上传失败");
@@ -51,10 +54,10 @@ function cancel() {
     <div class="drag" @click="handleClickUpload" @drop="handleDrop" @dragover="(e: DragEvent) => { e.preventDefault() }">
       点击或拖放文件到此处
     </div>
-    <FileInfo :file="file" />
+    <FileInfo :file="file" :hash="hash" />
     <div class="button-set">
       <button :disabled="file == undefined" @click="upload">上传</button>
-      <button @click="cancel">取消</button>
+      <button @click="cancel">清除</button>
     </div>
     <ProcessBar :percent="progress" v-show="file != undefined" />
   </div>
@@ -85,6 +88,32 @@ function cancel() {
 
   .button-set {
     margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    width: 30%;
+
+    button {
+      width: 100%;
+      border-radius: 10px;
+      border: none;
+      background-color: white;
+      color: black;
+      cursor: pointer;
+      animation: 0.5s ease-in-out 0s 1 normal none running pulse;
+    }
+
+    button:hover {
+      background-color: #0077CC;
+      color: white;
+    }
+
+    button:disabled {
+      background-color: gray;
+      color: white;
+      cursor: not-allowed;
+    }
+
   }
 
 }

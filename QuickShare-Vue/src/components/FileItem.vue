@@ -16,6 +16,11 @@ function qrcode() {
 }
 
 async function handleDelete() {
+  var r = window.confirm("确定删除吗？");
+  if (!r) {
+    return;
+  }
+
   var res = await DeleteFile(props.fileInfo.hash);
   if (res) {
     alert("删除成功");
@@ -33,10 +38,9 @@ async function getDetail() {
 <template>
   <div class="file-item">
     <lable class="name" @click="getDetail">{{ props.fileInfo.name }}</lable>
-    <lable class="type">{{ props.fileInfo.type }}</lable>
-    <button class="download" @click="download"> Download </button>
-    <button class="showQR" @click="qrcode"> Share </button>
-    <button class="delete" @click="handleDelete"> Delete </button>
+    <lable class="type">{{ props.fileInfo.type.split("/")[0] }}</lable>
+    <button class="showQR" @click="qrcode"> M </button>
+    <button class="delete" @click="handleDelete"> X </button>
   </div>
 </template>
 <style scoped lang="scss">
@@ -48,7 +52,7 @@ async function getDetail() {
   column-gap: 10px;
 
   .name {
-    width: 300px;
+    max-width: 300px;
     overflow: hidden;
   }
 }

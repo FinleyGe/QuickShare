@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+import { BaseUrl } from '../const';
+
 const props = defineProps<{
   file: File | undefined;
+  hash: string | undefined;
 }>();
+
+const link = computed(() => {
+  if (props.hash) {
+    return BaseUrl + "get/" + props.hash;
+  }
+  return "未上传";
+});
 
 </script>
 <template>
@@ -9,6 +20,7 @@ const props = defineProps<{
     <div class="filename">文件名: {{ props.file?.name }}</div>
     <div class="filesize">文件大小: {{ props.file?.size + 'b' }}</div>
     <div class="filetype">文件类型: {{ props.file?.type }}</div>
+    <div class="link">链接: {{ link }}</div>
   </div>
 </template>
 <style scoped lang="scss">

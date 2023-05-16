@@ -1,13 +1,15 @@
 import axios, { AxiosProgressEvent } from "axios";
 import { BaseUrl } from "../const";
-import { IResponse, ILoginResponseData, IFileInfo, IFileInfoDetail } from "./type";
+import { IResponse, IUploadResponseData, IFileInfo, IFileInfoDetail } from "./type";
 
 export const api = axios.create({
   baseURL: BaseUrl,
   withCredentials: true,
 });
 
-export function UploadFile(file: File, onUploadProgress: (e: AxiosProgressEvent) => void) {
+export function UploadFile(file: File,
+  onUploadProgress: (e: AxiosProgressEvent) => void)
+  : Promise<IResponse<IUploadResponseData>> {
   const formData = new FormData();
   formData.append("file", file);
   return api.post("/upload", formData, {
@@ -16,7 +18,6 @@ export function UploadFile(file: File, onUploadProgress: (e: AxiosProgressEvent)
 }
 
 export function GetFile(hash: string) {
-  // return api.get(`/get/${hash}`, { responseType: "blob" });
   window.location.href = `${BaseUrl}get/${hash}`;
 }
 

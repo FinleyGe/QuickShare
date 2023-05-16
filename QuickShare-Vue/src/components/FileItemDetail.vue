@@ -36,7 +36,7 @@ const fileSize = computed(() => {
 })
 
 async function share() {
-  let res = await GetShareCode(props.fileInfo?.hash);
+  let res = await GetShareCode(props.fileInfo!.hash);
   if (res) {
     alert("ShareCode: " + res.shareCode);
   } else {

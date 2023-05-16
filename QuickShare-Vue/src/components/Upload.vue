@@ -34,8 +34,8 @@ async function upload() {
       progress.value = e.progress == undefined ? 0 : e!.progress * 100;
       console.log(e);
     });
-  if (res.data.message == "OK") {
-    hash.value = res.data.data.hash;
+  if (res.hash != "") {
+    hash.value = res.hash;
     alert("上传成功");
   } else {
     alert("上传失败");

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useStore } from '../store/init'
-import { LoginAPI, GetFileList } from '../api/index'
+import { LoginAPI } from '../api/index'
 const emit = defineEmits(["logined"]);
 const store = useStore();
 const username = ref<string>("");
 const password = ref<string>("");
 async function handleLogin() {
-  var res: Boolean = await LoginAPI(username.value, password.value);
-  if (res) {
+  var res = await LoginAPI(username.value, password.value);
+  if (res.message == "OK") {
     alert("登陆成功");
     store.setLogin(true);
     emit("logined");

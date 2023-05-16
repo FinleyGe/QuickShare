@@ -3,12 +3,16 @@ export interface IResponse<T> {
   message: string;
 }
 
-export interface ILoginResponseData {
+export interface ILoginResponse {
   message: string;
 }
 
-export interface IUploadResponseData {
+export interface IUploadResponse {
   hash: string;
+}
+
+export interface IDeleteResponse {
+  message: string;
 }
 
 export interface IFileInfo {
@@ -24,4 +28,16 @@ export interface IFileInfoDetail {
   size: number;
   create_time: string;
   download_count: number;
+}
+
+export interface IShareCodeResponse {
+  shareCode: string;
+}
+
+export interface IGetHashByShareCodeResponse {
+  hash: string;
+}
+
+export interface IGetFileListRespose {
+  data: IFileInfo[];
 }

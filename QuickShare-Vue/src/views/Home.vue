@@ -2,7 +2,6 @@
 import Upload from '../components/Upload.vue'
 import FileItemDetail from '../components/FileItemDetail.vue'
 import { useStore } from '../store/init'
-import type { DeviceSize } from '../store/init'
 import { ref } from 'vue';
 import Login from '../components/Login.vue'
 import { GetFileList } from '../api/index'
@@ -12,7 +11,6 @@ import QRCode from '../components/QRCode.vue'
 import ShareCode from '../components/ShareCode.vue'
 
 const store = useStore()
-const pageSize = ref<DeviceSize>(store.deviceSize);
 const showLogin = ref<boolean>(false);
 const fileList = ref<IFileInfo[]>([]);
 const QRCodePath = ref<string>("");
@@ -45,8 +43,6 @@ function showDetail(detail: IFileInfoDetail) {
 function logout() {
   if (store.isLogin) {
     store.setLogin(false);
-    // delete all cookie
-
     document.cookie.split(";").forEach((c) => {
       document.cookie = c
         .replace(/^ +/, "")
@@ -54,6 +50,7 @@ function logout() {
     });
   }
 }
+
 </script>
 
 <template>

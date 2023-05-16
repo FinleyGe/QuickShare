@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { IFileInfoDetail } from '../api/type';
-import { BaseUrl } from '../const'
+import { BaseUrl } from '../const';
+import { GetShareCode } from '../api';
 const props = defineProps<{
   fileInfo: IFileInfoDetail | undefined,
 }>();
@@ -34,6 +35,14 @@ const fileSize = computed(() => {
   return "";
 })
 
+async function share() {
+  let res = await GetShareCode(props.fileInfo?.hash);
+  if (res) {
+    alert("ShareCode: " + res.shareCode);
+  } else {
+    alert("获取ShareCode失败");
+  }
+}
 
 </script>
 <template>
@@ -44,7 +53,7 @@ const fileSize = computed(() => {
       <div classs="size">大小: {{ fileSize }} </div>
       <img :src="BaseUrl + 'get/' + props.fileInfo?.hash" v-if="props.fileInfo?.type == 'image/png'">
     </div>
-    <button @click="">Share</button>
+    <button @click="share">ShareCode</button>
     <button @click="close">Close</button>
   </div>
 </template>

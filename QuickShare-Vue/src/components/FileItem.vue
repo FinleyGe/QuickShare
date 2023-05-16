@@ -1,15 +1,11 @@
 <script setup lang="ts">
-import { GetFile, DeleteFile, GetFileDetail } from '../api';
+import { DeleteFile, GetFileDetail } from '../api';
 import { IFileInfo } from '../api/type';
-import { BaseUrl } from '../const';
 const props = defineProps<{
   fileInfo: IFileInfo
 }>();
 
 const emits = defineEmits(["showQRCode", "showDetail"]);
-function download() {
-  GetFile(props.fileInfo.hash);
-}
 
 function qrcode() {
   emits("showQRCode", props.fileInfo.hash);
@@ -22,7 +18,7 @@ async function handleDelete() {
   }
 
   var res = await DeleteFile(props.fileInfo.hash);
-  if (res) {
+  if (res.message == "OK") {
     alert("删除成功");
   } else {
     alert("删除失败");
@@ -39,7 +35,7 @@ async function getDetail() {
   <div class="file-item">
     <lable class="name" @click="getDetail">{{ props.fileInfo.name }}</lable>
     <lable class="type">{{ props.fileInfo.type.split("/")[0] }}</lable>
-    <button class="showQR" @click="qrcode"> M </button>
+    <button class="showQR" @click="qrcode"> Share </button>
     <button class="delete" @click="handleDelete"> X </button>
   </div>
 </template>

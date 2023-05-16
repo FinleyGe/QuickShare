@@ -29,7 +29,7 @@ const link = computed(() => {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    "filename filename filename"
+    "filename link link"
     "filesize filetype filetype";
 
   .filename {
@@ -42,6 +42,10 @@ const link = computed(() => {
 
   .filetype {
     grid-area: filetype;
+  }
+
+  .link {
+    grid-area: link;
   }
 }
 </style>

@@ -87,3 +87,15 @@ export async function
 
   return res.data;
 }
+
+export async function
+  GetFileListByType(type: string):
+  Promise<IFileInfo[]> {
+  let res = await request({
+    url: `/all_info_type`,
+    params: { type },
+    method: "GET",
+  });
+
+  return res.data.data;
+}

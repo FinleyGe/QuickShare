@@ -107,6 +107,7 @@ func DeleteFile(c *gin.Context) {
 
 func GetAllInfoByType(c *gin.Context) {
 	fileType := c.Query("type")
+	log.Println("type:" + fileType)
 	files, err := model.GetAllInfoByType(fileType)
 	if err != nil {
 		Response(c, http.StatusInternalServerError, "Internal Server Error", nil)

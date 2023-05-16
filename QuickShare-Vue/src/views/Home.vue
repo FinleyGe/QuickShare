@@ -4,7 +4,7 @@ import FileItemDetail from '../components/FileItemDetail.vue'
 import { useStore } from '../store/init'
 import { ref } from 'vue';
 import Login from '../components/Login.vue'
-import { GetFileList } from '../api/index'
+import { GetFileList, GetFileListByType } from '../api/index'
 import FileItem from '../components/FileItem.vue'
 import { IFileInfo, IFileInfoDetail } from '../api/type';
 import QRCode from '../components/QRCode.vue'
@@ -17,19 +17,31 @@ const QRCodePath = ref<string>("");
 const isShowQRCode = ref<boolean>(false);
 const isShowDetail = ref<boolean>(false);
 const fileDetail = ref<IFileInfoDetail | undefined>();
+const type = ref<string>("");
+
 function handleLogin() {
   if (!store.isLogin) {
     showLogin.value = !showLogin.value;
   }
 }
+
 function Logined() {
-  console.log("logined");
   showLogin.value = false;
 }
+
 async function refresh() {
   fileList.value = await GetFileList();
-  console.log(fileList.value)
 }
+
+async function refreshImage() {
+  fileList.value = await GetFileListByType('image');
+}
+
+async function refreshByType() {
+  if (type.value != "")
+    fileList.value = await GetFileListByType(type.value);
+}
+
 function showQRCode(path: string) {
   QRCodePath.value = path;
   isShowQRCode.value = true;
@@ -73,9 +85,12 @@ function logout() {
     </main>
     <aside>
       <div class="title">
-        文件列表
+        <div class="title">文件列表</div>
         <button @click="refresh">最近</button>
-        <button> 图片 </button>
+        <button @click="refreshImage"> 图片 </button>
+        <hr>
+        <input type="text" placeholder="类型 or 文件名" v-model="type" />
+        <button @click="refreshByType" :disabled="type == ''">搜索</button>
       </div>
       <div class="files">
         <FileItem :fileInfo="file" v-for="file in fileList" @showQRCode="showQRCode" @showDetail="showDetail" />
